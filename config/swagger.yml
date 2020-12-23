@@ -1,0 +1,87 @@
+openapi: 3.0.1
+info:
+  title: Folio Request
+  description: Servicio para solicitar uno o más folios.
+  version: 1.0.0
+servers:
+- url: /api/folio-request
+paths:
+  /api/folio-request:
+    post:
+      tags:
+      - folio-request
+      summary: index
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+              schema:
+                type: object
+                properties:
+                  entityId:
+                    type: integer
+                    description: Código  del financiador
+                  numberFolioRequest:
+                    type: integer
+                    description: Cantidad de numeros de folio solicitados
+                required:
+                  - name
+                  - email
+        required: true
+      responses:
+        201:
+          description: Datos listados correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: Código  de Respuesta
+                  data:
+                    type: object
+                    properties:
+                      folios:
+                        type: array
+                        items:
+                          type: integer
+                          description: Correlativo Folio
+        400:
+          description: Faltan parámetros o "numberFolioRequest" no válido.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: Código  de Respuesta
+                  messages:
+                    type: string
+                    description: Mensaje de Respuesta
+        404:
+          description: Entidad no válida o no tiene cola configurada.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: Código  de Respuesta
+                  messages:
+                    type: string
+                    description: Mensaje de Respuesta
+        408:
+          description: Tiempo de espera agotado.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: Código  de Respuesta
+                  messages:
+                    type: string
+                    description: Mensaje de Respuesta

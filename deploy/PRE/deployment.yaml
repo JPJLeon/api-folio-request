@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jobBaseName
+  namespace: med-benefits
+  labels:
+    app: jobBaseName
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jobBaseName
+  template:
+    metadata:
+      labels:
+        app: jobBaseName
+        version: "{{Version}}"
+        build: "numberBuildJob"
+    spec:
+      containers:
+        - name: jobBaseName
+          image: imageRegistry/appVersion
+          env:
+            - name: HOST
+            - name: PORT
+            - name: DB_CONNECTION
+            - name: DB_HOST
+            - name: DB_PORT
+            - name: DB_USER
+            - name: DB_PASSWORD
+            - name: DB_DATABASE
+            - name: APP_KEY
+            - name: HASH_DRIVER
+            - name: SESSION_DRIVER
+            - name: DB_DEBUG
+            - name: RABBITMQ_TIME
+            - name: RABBITMQ_HOST
+            - name: ELASTIC_SEARCH_LOG
+            - name: ELASTIC_HOST
+            - name: ELASTIC_INDEX
+            - name: ELASTIC_START
+            - name : ELASTIC_APM_SERVICE_NAME
+            - name : ELASTIC_APM_SECRET_TOKEN
+            - name : ELASTIC_APM_SERVER_URL
+          ports:
+            - containerPort: 4449
+          resources: {}
+          imagePullPolicy: "Always"
+status: {}

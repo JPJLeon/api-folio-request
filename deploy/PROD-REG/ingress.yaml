@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    field.cattle.io/ingressState: '{"dvh7781yS6J5NHVJlwryaXAE2kFTVweOGBG1oOvSFnFHRe5p39N+dbGefAlg7Y9ugU4nW7hUC7T==":""}'
+    field.cattle.io/publicEndpoints: '[{"addresses":[""],"port":80,"protocol":"HTTP","serviceName":"med-benefits:jobBaseName","ingressName":"med-benefits:jobBaseName","hostname":"jobBaseName.api-reg-intena.local","allNodes":false}]'
+  generation: 1
+  labels:
+    cattle.io/creator: norman
+  name: jobBaseName
+  namespace: med-benefits
+  selfLink: /apis/extensions/v1beta1/namespaces/med-benefits/ingresses/jobBaseName
+spec:
+  rules:
+    - host: jobBaseName.api-reg-intena.local
+      http:
+        paths:
+          - backend:
+              serviceName: jobBaseName
+              servicePort: 8080
+status:
+  loadBalancer:
+    ingress:
+      - hostname: ae6da2d6e08be11ebb20f02ce34ee59e-5ded21c0ae37147a.elb.us-east-1.amazonaws.com

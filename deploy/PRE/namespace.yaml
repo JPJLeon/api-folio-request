@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: med-benefits
+  annotations:
+    field.cattle.io/creatorId: u-t5d5h
+    field.cattle.io/projectId: c-ssjgm:p-l72rz
